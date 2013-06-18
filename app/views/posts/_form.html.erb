@@ -1,0 +1,9 @@
+<%= simple_form_for(@post, html: { class: "form-horizontal"}) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :body, as: :text, length: { maximum: 140 }, input_html: { rows: "3" } %>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>
