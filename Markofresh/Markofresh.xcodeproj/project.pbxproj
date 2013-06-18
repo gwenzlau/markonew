@@ -126,9 +126,6 @@
 		A4074D4C176D0868008CCCD7 = {
 			isa = PBXGroup;
 			children = (
-				A4EC02A81770C66B00D608B8 /* libz.dylib */,
-				A4EC02A61770C66200D608B8 /* SystemConfiguration.framework */,
-				A4EC02A41770C65800D608B8 /* CoreTelephony.framework */,
 				A4074D60176D0868008CCCD7 /* Markofresh */,
 				A4074D8B176D0868008CCCD7 /* MarkofreshTests */,
 				A4074D57176D0868008CCCD7 /* Frameworks */,
@@ -149,6 +146,9 @@
 		A4074D57176D0868008CCCD7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A4EC02A81770C66B00D608B8 /* libz.dylib */,
+				A4EC02A61770C66200D608B8 /* SystemConfiguration.framework */,
+				A4EC02A41770C65800D608B8 /* CoreTelephony.framework */,
 				A4EC029D1770C63F00D608B8 /* NewRelic_iOS_Agent_1.342 */,
 				A4074D58176D0868008CCCD7 /* UIKit.framework */,
 				A4074D5A176D0868008CCCD7 /* Foundation.framework */,
