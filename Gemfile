@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '1.9.3'
 
 gem 'rails', '3.2.13'
 gem 'devise'
@@ -6,7 +7,9 @@ gem 'simple_form'
 gem 'rabl'
 gem 'faker'
 gem 'cocoapods'
-gem 'xcodeproj'
+gem "paperclip", "~> 3.0"
+gem 'aws-sdk'
+gem 'newrelic_rpm'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
