@@ -6,7 +6,6 @@ gem 'devise'
 gem 'simple_form'
 gem 'rabl'
 gem 'faker'
-gem 'cocoapods'
 gem "paperclip", "~> 3.0"
 gem 'aws-sdk'
 gem 'newrelic_rpm'
