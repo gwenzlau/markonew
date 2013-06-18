@@ -16,11 +16,13 @@ ActiveRecord::Schema.define(:version => 20130606215419) do
   create_table "posts", :force => true do |t|
     t.text     "body"
     t.integer  "user_id"
-    t.decimal  "lat"
-    t.decimal  "lng"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.decimal  "lat",        :precision => 15, :scale => 10
+    t.decimal  "lng",        :precision => 15, :scale => 10
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
+
+  add_index "posts", ["user_id", "created_at", "lat", "lng"], :name => "index_posts_on_user_id_and_created_at_and_lat_and_lng"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false
