@@ -13,3 +13,9 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+/markofresh
+/markonew.xcworkspace
+/pods
+/podfile
+/podfile.lock
