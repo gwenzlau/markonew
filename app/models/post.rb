@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
 
   validates :body, presence: true, length: { maximum: 140 }
-  validates :user_id, presence: true
+  #validates :user_id, presence: true
   #validates :lat, presence: true,
   #validates :lng, presence: true
 
