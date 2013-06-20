@@ -27,7 +27,7 @@
 		A4074D88176D0868008CCCD7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4074D5E176D0868008CCCD7 /* CoreData.framework */; };
 		A4074D90176D0868008CCCD7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4074D8E176D0868008CCCD7 /* InfoPlist.strings */; };
 		A4074D93176D0868008CCCD7 /* MarkofreshTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4074D92176D0868008CCCD7 /* MarkofreshTests.m */; };
-		A4074D9E176D0E41008CCCD7 /* MPost.m in Sources */ = {isa = PBXBuildFile; fileRef = A4074D9D176D0E41008CCCD7 /* MPost.m */; };
+		A4074D9E176D0E41008CCCD7 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = A4074D9D176D0E41008CCCD7 /* Post.m */; };
 		A4074DA1176D0E41008CCCD7 /* MUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A4074DA0176D0E41008CCCD7 /* MUser.m */; };
 		A4C7E6DD176FB2480027E089 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C7E6DC176FB2480027E089 /* PostViewController.m */; };
 		A4EC02A11770C63F00D608B8 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = A4EC029E1770C63F00D608B8 /* LICENSE */; };
@@ -77,8 +77,8 @@
 		A4074D8F176D0868008CCCD7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A4074D91176D0868008CCCD7 /* MarkofreshTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarkofreshTests.h; sourceTree = "<group>"; };
 		A4074D92176D0868008CCCD7 /* MarkofreshTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarkofreshTests.m; sourceTree = "<group>"; };
-		A4074D9C176D0E41008CCCD7 /* MPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPost.h; path = ../../Markofresh/Markofresh/MPost.h; sourceTree = "<group>"; };
-		A4074D9D176D0E41008CCCD7 /* MPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPost.m; path = ../../Markofresh/Markofresh/MPost.m; sourceTree = "<group>"; };
+		A4074D9C176D0E41008CCCD7 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Post.h; path = ../../Markofresh/Markofresh/Post.h; sourceTree = "<group>"; };
+		A4074D9D176D0E41008CCCD7 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Post.m; path = ../../Markofresh/Markofresh/Post.m; sourceTree = "<group>"; };
 		A4074D9F176D0E41008CCCD7 /* MUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUser.h; path = ../../Markofresh/Markofresh/MUser.h; sourceTree = "<group>"; };
 		A4074DA0176D0E41008CCCD7 /* MUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUser.m; path = ../../Markofresh/Markofresh/MUser.m; sourceTree = "<group>"; };
 		A4C7E6DB176FB2480027E089 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostViewController.h; path = ../../Markofresh/Markofresh/PostViewController.h; sourceTree = "<group>"; };
@@ -165,9 +165,9 @@
 			children = (
 				A4074D69176D0868008CCCD7 /* AppDelegate.h */,
 				A4074D6A176D0868008CCCD7 /* AppDelegate.m */,
-				A4074D72176D0868008CCCD7 /* MainStoryboard.storyboard */,
 				A4074D78176D0868008CCCD7 /* MasterViewController.h */,
 				A4074D79176D0868008CCCD7 /* MasterViewController.m */,
+				A4074D72176D0868008CCCD7 /* MainStoryboard.storyboard */,
 				A4074D7B176D0868008CCCD7 /* DetailViewController.h */,
 				A4074D7C176D0868008CCCD7 /* DetailViewController.m */,
 				A4C7E6DB176FB2480027E089 /* PostViewController.h */,
@@ -175,8 +175,8 @@
 				A4074D75176D0868008CCCD7 /* Markofresh.xcdatamodeld */,
 				A4074D9F176D0E41008CCCD7 /* MUser.h */,
 				A4074DA0176D0E41008CCCD7 /* MUser.m */,
-				A4074D9C176D0E41008CCCD7 /* MPost.h */,
-				A4074D9D176D0E41008CCCD7 /* MPost.m */,
+				A4074D9C176D0E41008CCCD7 /* Post.h */,
+				A4074D9D176D0E41008CCCD7 /* Post.m */,
 				A4074D61176D0868008CCCD7 /* Supporting Files */,
 			);
 			path = Markofresh;
@@ -372,7 +372,7 @@
 				A4074D77176D0868008CCCD7 /* Markofresh.xcdatamodeld in Sources */,
 				A4074D7A176D0868008CCCD7 /* MasterViewController.m in Sources */,
 				A4074D7D176D0868008CCCD7 /* DetailViewController.m in Sources */,
-				A4074D9E176D0E41008CCCD7 /* MPost.m in Sources */,
+				A4074D9E176D0E41008CCCD7 /* Post.m in Sources */,
 				A4074DA1176D0E41008CCCD7 /* MUser.m in Sources */,
 				A4C7E6DD176FB2480027E089 /* PostViewController.m in Sources */,
 			);

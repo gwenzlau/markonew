@@ -1,3 +1,4 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+ # commenting this out skips the csrf token authentication - the app is insecure - setup api keys later
+ # protect_from_forgery
 end

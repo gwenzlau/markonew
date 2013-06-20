@@ -1,5 +1,5 @@
 //
-//  MPost.h
+//  Post.h
 //  markofresh
 //
 //  Created by Grant Wenzlau on 6/15/13.
@@ -11,7 +11,7 @@
 
 @class MUser;
 
-@interface MPost : NSManagedObject
+@interface Post : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * postID;
 @property (nonatomic, retain) id jsonURL;

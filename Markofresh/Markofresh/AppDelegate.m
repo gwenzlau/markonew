@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import <RestKit/RestKit.h>
 #import "MasterViewController.h"
-#import "MPost.h"
+#import "Post.h"
 #import <NewRelicAgent/NewRelicAgent.h>
 
 @implementation AppDelegate
@@ -55,29 +55,31 @@
      @"created_at":     @"createdAt"}];
     entityMapping.identificationAttributes = @[ @"postID" ];
     
+    [RKObjectManager sharedManager].requestSerializationMIMEType = RKMIMETypeJSON;
+    
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:entityMapping pathPattern:@"/posts" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
     [objectManager addResponseDescriptor:responseDescriptor];
     
     //
-    RKObjectMapping *responseMapping = [RKObjectMapping mappingForClass:[MPost class]];
-    [responseMapping addAttributeMappingsFromArray:@[@"body"]];
-    NSIndexSet *statusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful); // Anything in 2xx
-    RKResponseDescriptor *postDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseMapping pathPattern:@"/posts" keyPath:@"/posts" statusCodes:statusCodes];
+
     
-    RKObjectMapping *requestMapping = [RKObjectMapping requestMapping]; // objectClass == NSMutableDictionary
-    [requestMapping addAttributeMappingsFromArray:@[@"body"]];
+   
+    /*
+    RKObjectMapping *postRequestMapping = [RKObjectMapping requestMapping]; // objectClass == NSMutableDictionary
+    [postRequestMapping addAttributeMappingsFromArray:@[@"body"]];
     
-    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:requestMapping objectClass:[MPost class] rootKeyPath:@"post"];
-  //  RKRequestDescriptor * requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:[entityMapping inverseMapping] objectClass:[MPost class] rootKeyPath:@"post"];
+    
+    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:postRequestMapping objectClass:[Post class] rootKeyPath:@"/posts"];
+
     [objectManager addRequestDescriptor:requestDescriptor];
     
-    RKObjectManager *manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://fierce-shore-5970.herokuapp.com"]];
+    RKObjectManager *manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://fierce-shore-5970.herokuapp.com/posts"]];
     [manager addRequestDescriptor:requestDescriptor];
     [manager addResponseDescriptor:postDescriptor];
     
     [objectManager addRequestDescriptor:requestDescriptor];
-    
+    */
     
     
                                 
@@ -87,6 +89,17 @@
     MasterViewController *controller = (MasterViewController *)navigationController.topViewController;
     controller.managedObjectContext = managedObjectStore.mainQueueManagedObjectContext;
     return YES;
+    
+    // Log all HTTP traffic with request and response bodies
+    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
+    
+    // Log debugging info about Core Data
+    RKLogConfigureByName("RestKit/CoreData", RKLogLevelDebug);
+    
+    // Raise logging for a block
+    RKLogWithLevelWhileExecutingBlock(RKLogLevelTrace, ^{
+        // Do something that generates logs
+    });
 }
 
 @end

@@ -1,16 +1,17 @@
 //
-//  MPost.m
+//  Post.m
 //  markofresh
 //
 //  Created by Grant Wenzlau on 6/15/13.
 //  Copyright (c) 2013 master. All rights reserved.
 //
 
-#import "MPost.h"
+#import "Post.h"
+#import "PostViewController.h"
 #import "MUser.h"
 
 
-@implementation MPost
+@implementation Post
 
 @dynamic postID;
 @dynamic jsonURL;
@@ -34,6 +35,11 @@
     });
     return [NSString stringWithFormat:@"by %@ on %@", self.user.name,
             [dateFormatter stringFromDate:self.createdAt]];
+}
+
+-(void)setBody:(NSDictionary *)body forMIMEType:(NSString *)MIMEType
+{
+    
 }
 
 @end

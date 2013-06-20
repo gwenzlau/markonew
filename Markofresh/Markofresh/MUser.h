@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class MPost;
+@class Post;
 
 @interface MUser : NSManagedObject
 
@@ -21,8 +21,8 @@
 
 @interface MUser (CoreDataGeneratedAccessors)
 
-- (void)addPostsObject:(MPost *)value;
-- (void)removePostsObject:(MPost *)value;
+- (void)addPostsObject:(Post *)value;
+- (void)removePostsObject:(Post *)value;
 - (void)addPosts:(NSSet *)values;
 - (void)removePosts:(NSSet *)values;
 

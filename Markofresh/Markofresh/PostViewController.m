@@ -7,7 +7,7 @@
 //
 
 #import "PostViewController.h"
-#import "MPost.h"
+#import "Post.h"
 #import <RestKit/RestKit.h>
 
 @interface PostViewController ()
@@ -37,36 +37,47 @@
     // Dispose of any resources that can be recreated.
 }
 //
--(void)saveChanges {
-    RKManagedObjectStore *objectStore = [[RKObjectManager sharedManager] managedObjectStore];
-    MPost *post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:objectStore.mainQueueManagedObjectContext];
-    [post setBody:@"This is the body."];
+-(void)savePost {
+   /* RKManagedObjectStore *objectStore = [[RKObjectManager sharedManager] managedObjectStore];
+    Post *post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:objectStore.mainQueueManagedObjectContext];
+   [[RKObjectManager sharedManager] postObject:post path:@"/posts" parameters:nil success:nil failure:nil];
+    */
+    //
+    RKObjectMapping *responseMapping = [RKObjectMapping mappingForClass:[Post class]];
+    [responseMapping addAttributeMappingsFromArray:@[@"body"]];
+    NSIndexSet *statusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful);
+    RKResponseDescriptor *postDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseMapping pathPattern:@"/posts" keyPath:@"post" statusCodes:statusCodes];
     
-    [[RKObjectManager sharedManager] postObject:post path:@"/posts" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        NSLog(@"Success saving post");
-    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        NSLog(@"Failure saving post: %@", error.localizedDescription);
-    }];
-    /*
-    RKObjectMapping *responseMapping = [RKObjectMapping mappingForClass:[MPost class]];
-    [responseMapping addAttributeMappingsFromArray:@[@"bodyText", @"postID", @"createdAt"]];
-    NSIndexSet *statusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful); // Anything in 2xx
-    RKResponseDescriptor *postDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:responseMapping pathPattern:@"/posts" keyPath:@"posts" statusCodes:statusCodes];
+    RKObjectMapping *requestMapping = [RKObjectMapping requestMapping];
+    [requestMapping addAttributeMappingsFromArray:@[@"body"]];
     
-    RKObjectMapping *requestMapping = [RKObjectMapping requestMapping]; // objectClass == NSMutableDictionary
-    [requestMapping addAttributeMappingsFromArray:@[@"bodyText", @"postID", @"createdAt"]];
-    
-    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:requestMapping objectClass:[MPost class] rootKeyPath:@"posts"];
+    RKRequestDescriptor *requestDescriptor  = [RKRequestDescriptor requestDescriptorWithMapping:requestMapping objectClass:[Post class] rootKeyPath:@"post"];
     
     RKObjectManager *manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://fierce-shore-5970.herokuapp.com"]];
     [manager addRequestDescriptor:requestDescriptor];
     [manager addResponseDescriptor:postDescriptor];
+
     
-  //  MPost *post = [MPost new];
-   // post.bodyText = @"This is some text.";
-  
+    RKManagedObjectStore *objectStore = [[RKObjectManager sharedManager] managedObjectStore];
+    Post *post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:objectStore.mainQueueManagedObjectContext];
+    [post setBody:@"This is my new body."];
+    [[RKObjectManager sharedManager] postObject:post path:@"/posts" parameters: success:nil failure:nil];
     
-*/
+    [manager postObject:post path:@"posts" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        NSLog(@"Success saving post");
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Failure saving post: %@", error.localizedDescription);
+    }];
+    
+
+    
+   /* [[RKObjectManager sharedManager] postObject:post path:@"/posts" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        NSLog(@"Success saving post");
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Failure saving post: %@", error.localizedDescription);
+    }];
+    */
+   
     
 }
 
@@ -78,7 +89,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)onSave:(id)sender {
-    [self saveChanges];
+    [self savePost];
     [self dismiss];
 }
 

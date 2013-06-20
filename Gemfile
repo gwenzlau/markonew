@@ -9,6 +9,7 @@ gem 'faker'
 gem "paperclip", "~> 3.0"
 gem 'aws-sdk'
 gem 'newrelic_rpm'
+gem 'thin'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

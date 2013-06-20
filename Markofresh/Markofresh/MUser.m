@@ -7,7 +7,7 @@
 //
 
 #import "MUser.h"
-#import "MPost.h"
+#import "Post.h"
 
 
 @implementation MUser

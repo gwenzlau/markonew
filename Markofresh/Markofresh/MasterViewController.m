@@ -7,7 +7,7 @@
 //
 
 #import "MasterViewController.h"
-#import "MPost.h"
+#import "Post.h"
 #import "DetailViewController.h"
 
 @interface MasterViewController ()
@@ -233,7 +233,7 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    MPost *post = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    Post *post = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = post.titleText;
     cell.detailTextLabel.text = post.subtitleText;}
 

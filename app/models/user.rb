@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   
-  # :recoverable, - add this in later...
+  # :recoverable, - add this in later when you have an email client setup...
   devise :database_authenticatable, :registerable,
           :rememberable, :trackable, :validatable
 
