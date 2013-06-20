@@ -38,7 +38,7 @@
 }
 //
 -(void)savePost {
-   /* RKManagedObjectStore *objectStore = [[RKObjectManager sharedManager] managedObjectStore];
+    /* RKManagedObjectStore *objectStore = [[RKObjectManager sharedManager] managedObjectStore];
     Post *post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:objectStore.mainQueueManagedObjectContext];
    [[RKObjectManager sharedManager] postObject:post path:@"/posts" parameters:nil success:nil failure:nil];
     */
@@ -69,7 +69,7 @@
     Post *post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:objectStore.mainQueueManagedObjectContext];
     [post setBody:@"This is my new body."];
    
-    [[RKObjectManager sharedManager] postObject:post path:@"posts" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    [[RKObjectManager sharedManager] postObject:post path:@"/posts.json" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         NSLog(@"Success saving post");
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"Failure saving post: %@", error.localizedDescription);

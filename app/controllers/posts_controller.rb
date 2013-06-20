@@ -36,7 +36,7 @@ respond_to :html, :json, :xml
   end
 
   def create
-    @post = current_user.posts.new(params[:post])
+    @post = Post.new(params[:post])
 
     respond_to do |format|
       if @post.save
