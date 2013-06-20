@@ -32,21 +32,22 @@
     NSAssert(persistentStore, @"Failed to add persistent store: %@", error);
     
     [managedObjectStore createManagedObjectContexts];
-    
+
     // Configure a managed object cache to ensure we do not create duplicate objects
     managedObjectStore.managedObjectCache = [[RKInMemoryManagedObjectCache alloc] initWithManagedObjectContext:managedObjectStore.persistentStoreManagedObjectContext];
 
-    
     // Set the default store shared instance
     [RKManagedObjectStore setDefaultStore:managedObjectStore];
     
     // Configure the object manager
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://fierce-shore-5970.herokuapp.com"]];
     objectManager.managedObjectStore = managedObjectStore;
+    [objectManager setRequestSerializationMIMEType:@"application/json"];
+    [objectManager setAcceptHeaderWithMIMEType:@"application/json"];
     
     
     [RKObjectManager setSharedManager:objectManager];
-    
+    //setup Post Entity map
     RKEntityMapping *entityMapping = [RKEntityMapping mappingForEntityForName:@"Post" inManagedObjectStore:managedObjectStore];
     [entityMapping addAttributeMappingsFromDictionary:@{
      @"id":             @"postID",
@@ -57,31 +58,28 @@
     
     [RKObjectManager sharedManager].requestSerializationMIMEType = RKMIMETypeJSON;
     
-    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:entityMapping pathPattern:@"/posts" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:entityMapping pathPattern:@"/posts.json" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
     [objectManager addResponseDescriptor:responseDescriptor];
     
-    //
-
-    
+    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:[entityMapping inverseMapping] objectClass:[Post class] rootKeyPath:@"/posts.json"];
+    [objectManager addRequestDescriptor:requestDescriptor];
    
+    
     /*
-    RKObjectMapping *postRequestMapping = [RKObjectMapping requestMapping]; // objectClass == NSMutableDictionary
-    [postRequestMapping addAttributeMappingsFromArray:@[@"body"]];
-    
-    
-    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:postRequestMapping objectClass:[Post class] rootKeyPath:@"/posts"];
-
-    [objectManager addRequestDescriptor:requestDescriptor];
-    
-    RKObjectManager *manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"https://fierce-shore-5970.herokuapp.com/posts"]];
-    [manager addRequestDescriptor:requestDescriptor];
-    [manager addResponseDescriptor:postDescriptor];
-    
-    [objectManager addRequestDescriptor:requestDescriptor];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://fierce-shore-5970.herokuapp.com/posts.json"]];
+    RKManagedObjectRequestOperation *operation = [[RKManagedObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[responseDescriptor]];
+    operation.managedObjectContext = managedObjectStore.mainQueueManagedObjectContext;
+    operation.managedObjectCache = managedObjectStore.managedObjectCache;
+    [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
+        Post *post = [result firstObject];
+        NSLog(@"Mapped the post: %@", post);
+    }failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Failed with error: %@", [error localizedDescription]);
+    }];
+    NSOperationQueue *operationQueue = [NSOperationQueue new];
+    [operationQueue addOperation:operation];
     */
-    
-    
                                 
     
     // Override point for customization after application launch.
