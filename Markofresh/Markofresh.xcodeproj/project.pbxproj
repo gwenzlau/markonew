@@ -30,6 +30,7 @@
 		A4074D9E176D0E41008CCCD7 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = A4074D9D176D0E41008CCCD7 /* Post.m */; };
 		A4074DA1176D0E41008CCCD7 /* MUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A4074DA0176D0E41008CCCD7 /* MUser.m */; };
 		A4C7E6DD176FB2480027E089 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C7E6DC176FB2480027E089 /* PostViewController.m */; };
+		A4D6B3A31774CD7800E45BB0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D6B3A21774CD7800E45BB0 /* CoreLocation.framework */; };
 		A4EC02A11770C63F00D608B8 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = A4EC029E1770C63F00D608B8 /* LICENSE */; };
 		A4EC02A21770C63F00D608B8 /* NewRelicAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4EC029F1770C63F00D608B8 /* NewRelicAgent.framework */; };
 		A4EC02A31770C63F00D608B8 /* README in Resources */ = {isa = PBXBuildFile; fileRef = A4EC02A01770C63F00D608B8 /* README */; };
@@ -83,6 +84,7 @@
 		A4074DA0176D0E41008CCCD7 /* MUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUser.m; path = ../../Markofresh/Markofresh/MUser.m; sourceTree = "<group>"; };
 		A4C7E6DB176FB2480027E089 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostViewController.h; path = ../../Markofresh/Markofresh/PostViewController.h; sourceTree = "<group>"; };
 		A4C7E6DC176FB2480027E089 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostViewController.m; path = ../../Markofresh/Markofresh/PostViewController.m; sourceTree = "<group>"; };
+		A4D6B3A21774CD7800E45BB0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A4EC029E1770C63F00D608B8 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		A4EC029F1770C63F00D608B8 /* NewRelicAgent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NewRelicAgent.framework; sourceTree = "<group>"; };
 		A4EC02A01770C63F00D608B8 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4D6B3A31774CD7800E45BB0 /* CoreLocation.framework in Frameworks */,
 				A4EC02A91770C66B00D608B8 /* libz.dylib in Frameworks */,
 				A4EC02A71770C66200D608B8 /* SystemConfiguration.framework in Frameworks */,
 				A4EC02A51770C65800D608B8 /* CoreTelephony.framework in Frameworks */,
@@ -146,6 +149,7 @@
 		A4074D57176D0868008CCCD7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A4D6B3A21774CD7800E45BB0 /* CoreLocation.framework */,
 				A4EC02A81770C66B00D608B8 /* libz.dylib */,
 				A4EC02A61770C66200D608B8 /* SystemConfiguration.framework */,
 				A4EC02A41770C65800D608B8 /* CoreTelephony.framework */,

@@ -8,6 +8,7 @@
 
 #import "PostViewController.h"
 #import "Post.h"
+#import "MUser.h"
 #import <RestKit/RestKit.h>
 
 @interface PostViewController ()
@@ -42,12 +43,15 @@
     RKManagedObjectStore *objectStore = [[RKObjectManager sharedManager] managedObjectStore];
     Post *post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:objectStore.mainQueueManagedObjectContext];
     [post setBody:self.postTextField.text];
+    [objectStore.mainQueueManagedObjectContext save:nil];
    
-    [[RKObjectManager sharedManager] postObject:post path:@"/posts.json" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    RKObjectManager *manager = [RKObjectManager sharedManager]; [manager postObject:self path:@"/posts.json" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         NSLog(@"Success saving post");
+       // [MUser setCurrentUser:self];
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"Failure saving post: %@", error.localizedDescription);
     }];
+    
     
 }
 
