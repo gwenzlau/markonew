@@ -36,11 +36,9 @@ respond_to :html, :json, :xml
   end
 
   def create
-   # this is what it used to be to make it work on web but not iOS
-   # @post = current_user.posts.new(params[:post])
+   # this is what it used to be to make it work on web but not iOS @post = current_user.posts.new(params[:post])
     @post = Post.new(params[:post])
-    respond_with(@post)
-    
+
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Mark was successfully created.' }
