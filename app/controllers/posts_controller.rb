@@ -37,7 +37,7 @@ respond_to :html, :json, :xml
 
   def create
    # this is what it used to be to make it work on web but not iOS @post = current_user.posts.new(params[:post])
-    @post = Post.new(params[:post])
+    @post = Post.new(params[:Post])
 
     respond_to do |format|
       if @post.save

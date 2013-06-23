@@ -45,14 +45,14 @@
     [post setBody:self.postTextField.text];
     [objectStore.mainQueueManagedObjectContext save:nil];
    
-    RKObjectManager *manager = [RKObjectManager sharedManager]; [manager postObject:self path:@"/posts.json" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+    RKObjectManager *manager = [RKObjectManager sharedManager]; [manager postObject:post path:@"/posts.json" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         NSLog(@"Success saving post");
        // [MUser setCurrentUser:self];
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"Failure saving post: %@", error.localizedDescription);
     }];
     
-    
+    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
 }
 
 - (IBAction)onCancel:(id)sender {

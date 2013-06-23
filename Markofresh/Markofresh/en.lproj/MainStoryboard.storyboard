@@ -119,11 +119,12 @@
                     </view>
                     <connections>
                         <outlet property="postTextField" destination="U58-is-4fR" id="QIR-PQ-KdR"/>
+                        <outlet property="view" destination="3X6-29-qfN" id="DxI-be-my4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jwc-Ft-Gxp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="911" y="-400"/>
+            <point key="canvasLocation" x="921" y="-429"/>
         </scene>
         <!--Detail View Controller - Detail-->
         <scene sceneID="24">
