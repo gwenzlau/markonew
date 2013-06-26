@@ -37,7 +37,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-//
+
+#pragma mark - Actions
+
 -(void)savePost {
     
     RKManagedObjectStore *objectStore = [[RKObjectManager sharedManager] managedObjectStore];

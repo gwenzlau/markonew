@@ -29,6 +29,12 @@
 		A4074D93176D0868008CCCD7 /* MarkofreshTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4074D92176D0868008CCCD7 /* MarkofreshTests.m */; };
 		A4074D9E176D0E41008CCCD7 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = A4074D9D176D0E41008CCCD7 /* Post.m */; };
 		A4074DA1176D0E41008CCCD7 /* MUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A4074DA0176D0E41008CCCD7 /* MUser.m */; };
+		A4589370177B266600FBA2B6 /* MAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A458936F177B266600FBA2B6 /* MAPIClient.m */; };
+		A4589374177B2FA000FBA2B6 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = A4589373177B2FA000FBA2B6 /* Photo.m */; };
+		A4589377177B30EF00FBA2B6 /* PhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4589376177B30EF00FBA2B6 /* PhotosViewController.m */; };
+		A458937A177B3E1E00FBA2B6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4589379177B3E1E00FBA2B6 /* MapKit.framework */; };
+		A458937E177B4AEC00FBA2B6 /* photo-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = A458937C177B4AEC00FBA2B6 /* photo-placeholder.png */; };
+		A458937F177B4AEC00FBA2B6 /* photo-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A458937D177B4AEC00FBA2B6 /* photo-placeholder@2x.png */; };
 		A4C7E6DD176FB2480027E089 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C7E6DC176FB2480027E089 /* PostViewController.m */; };
 		A4D6B3A31774CD7800E45BB0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D6B3A21774CD7800E45BB0 /* CoreLocation.framework */; };
 		A4EC02A11770C63F00D608B8 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = A4EC029E1770C63F00D608B8 /* LICENSE */; };
@@ -82,6 +88,15 @@
 		A4074D9D176D0E41008CCCD7 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Post.m; path = ../../Markofresh/Markofresh/Post.m; sourceTree = "<group>"; };
 		A4074D9F176D0E41008CCCD7 /* MUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUser.h; path = ../../Markofresh/Markofresh/MUser.h; sourceTree = "<group>"; };
 		A4074DA0176D0E41008CCCD7 /* MUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUser.m; path = ../../Markofresh/Markofresh/MUser.m; sourceTree = "<group>"; };
+		A458936E177B266600FBA2B6 /* MAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MAPIClient.h; path = ../../Markofresh/Markofresh/MAPIClient.h; sourceTree = "<group>"; };
+		A458936F177B266600FBA2B6 /* MAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MAPIClient.m; path = ../../Markofresh/Markofresh/MAPIClient.m; sourceTree = "<group>"; };
+		A4589372177B2FA000FBA2B6 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photo.h; path = ../../Markofresh/Markofresh/Photo.h; sourceTree = "<group>"; };
+		A4589373177B2FA000FBA2B6 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photo.m; path = ../../Markofresh/Markofresh/Photo.m; sourceTree = "<group>"; };
+		A4589375177B30EF00FBA2B6 /* PhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotosViewController.h; path = ../../Markofresh/Markofresh/PhotosViewController.h; sourceTree = "<group>"; };
+		A4589376177B30EF00FBA2B6 /* PhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotosViewController.m; path = ../../Markofresh/Markofresh/PhotosViewController.m; sourceTree = "<group>"; };
+		A4589379177B3E1E00FBA2B6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A458937C177B4AEC00FBA2B6 /* photo-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo-placeholder.png"; sourceTree = "<group>"; };
+		A458937D177B4AEC00FBA2B6 /* photo-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo-placeholder@2x.png"; sourceTree = "<group>"; };
 		A4C7E6DB176FB2480027E089 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostViewController.h; path = ../../Markofresh/Markofresh/PostViewController.h; sourceTree = "<group>"; };
 		A4C7E6DC176FB2480027E089 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostViewController.m; path = ../../Markofresh/Markofresh/PostViewController.m; sourceTree = "<group>"; };
 		A4D6B3A21774CD7800E45BB0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -99,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A458937A177B3E1E00FBA2B6 /* MapKit.framework in Frameworks */,
 				A4D6B3A31774CD7800E45BB0 /* CoreLocation.framework in Frameworks */,
 				A4EC02A91770C66B00D608B8 /* libz.dylib in Frameworks */,
 				A4EC02A71770C66200D608B8 /* SystemConfiguration.framework in Frameworks */,
@@ -129,6 +145,7 @@
 		A4074D4C176D0868008CCCD7 = {
 			isa = PBXGroup;
 			children = (
+				A4589379177B3E1E00FBA2B6 /* MapKit.framework */,
 				A4074D60176D0868008CCCD7 /* Markofresh */,
 				A4074D8B176D0868008CCCD7 /* MarkofreshTests */,
 				A4074D57176D0868008CCCD7 /* Frameworks */,
@@ -169,13 +186,15 @@
 			children = (
 				A4074D69176D0868008CCCD7 /* AppDelegate.h */,
 				A4074D6A176D0868008CCCD7 /* AppDelegate.m */,
+				A4589371177B277500FBA2B6 /* API */,
 				A4074D78176D0868008CCCD7 /* MasterViewController.h */,
-				A4074D79176D0868008CCCD7 /* MasterViewController.m */,
 				A4074D72176D0868008CCCD7 /* MainStoryboard.storyboard */,
 				A4074D7B176D0868008CCCD7 /* DetailViewController.h */,
+				A4074D79176D0868008CCCD7 /* MasterViewController.m */,
+				A4589378177B347800FBA2B6 /* Controllers */,
 				A4074D7C176D0868008CCCD7 /* DetailViewController.m */,
-				A4C7E6DB176FB2480027E089 /* PostViewController.h */,
-				A4C7E6DC176FB2480027E089 /* PostViewController.m */,
+				A4589372177B2FA000FBA2B6 /* Photo.h */,
+				A4589373177B2FA000FBA2B6 /* Photo.m */,
 				A4074D75176D0868008CCCD7 /* Markofresh.xcdatamodeld */,
 				A4074D9F176D0E41008CCCD7 /* MUser.h */,
 				A4074DA0176D0E41008CCCD7 /* MUser.m */,
@@ -193,6 +212,7 @@
 				A4074D63176D0868008CCCD7 /* InfoPlist.strings */,
 				A4074D66176D0868008CCCD7 /* main.m */,
 				A4074D68176D0868008CCCD7 /* Markofresh-Prefix.pch */,
+				A458937B177B4AE000FBA2B6 /* Images */,
 				A4074D6C176D0868008CCCD7 /* Default.png */,
 				A4074D6E176D0868008CCCD7 /* Default@2x.png */,
 				A4074D70176D0868008CCCD7 /* Default-568h@2x.png */,
@@ -217,6 +237,35 @@
 				A4074D8E176D0868008CCCD7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A4589371177B277500FBA2B6 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				A458936E177B266600FBA2B6 /* MAPIClient.h */,
+				A458936F177B266600FBA2B6 /* MAPIClient.m */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		A4589378177B347800FBA2B6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A4C7E6DB176FB2480027E089 /* PostViewController.h */,
+				A4C7E6DC176FB2480027E089 /* PostViewController.m */,
+				A4589375177B30EF00FBA2B6 /* PhotosViewController.h */,
+				A4589376177B30EF00FBA2B6 /* PhotosViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		A458937B177B4AE000FBA2B6 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				A458937C177B4AEC00FBA2B6 /* photo-placeholder.png */,
+				A458937D177B4AEC00FBA2B6 /* photo-placeholder@2x.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		A4EC029D1770C63F00D608B8 /* NewRelic_iOS_Agent_1.342 */ = {
@@ -309,6 +358,8 @@
 				A4074D74176D0868008CCCD7 /* MainStoryboard.storyboard in Resources */,
 				A4EC02A11770C63F00D608B8 /* LICENSE in Resources */,
 				A4EC02A31770C63F00D608B8 /* README in Resources */,
+				A458937E177B4AEC00FBA2B6 /* photo-placeholder.png in Resources */,
+				A458937F177B4AEC00FBA2B6 /* photo-placeholder@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +430,9 @@
 				A4074D9E176D0E41008CCCD7 /* Post.m in Sources */,
 				A4074DA1176D0E41008CCCD7 /* MUser.m in Sources */,
 				A4C7E6DD176FB2480027E089 /* PostViewController.m in Sources */,
+				A4589370177B266600FBA2B6 /* MAPIClient.m in Sources */,
+				A4589374177B2FA000FBA2B6 /* Photo.m in Sources */,
+				A4589377177B30EF00FBA2B6 /* PhotosViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
