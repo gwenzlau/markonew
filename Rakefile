@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Marko::Application.load_tasks
+Markonewmaster::Application.load_tasks
