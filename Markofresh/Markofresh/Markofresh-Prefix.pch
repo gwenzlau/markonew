@@ -21,5 +21,6 @@
 #import <CoreServices/CoreServices.h>
 #endif
 
+#import <AFNetworking/AFNetworking.h>
 // Make RestKit globally available
-#import <RestKit/RestKit.h>
+//#import <RestKit/RestKit.h>

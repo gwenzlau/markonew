@@ -1,11 +1,9 @@
 platform :ios, 6.0
-pod 'RestKit', '~> 0.20.0rc'
+pod 'AFNetworking', '~> 1.2'
+pod 'AFIncrementalStore'
 pod 'ISO8601DateFormatter', '~> 0.6'
 pod 'BlocksKit'
 
 xcodeproj '/Users/grantwenzlau/markonewmaster/markofresh/markofresh.xcodeproj'
 
-# Include optional Testing and Search components
-pod 'RestKit/Testing', '~> 0.20.0rc'
-pod 'RestKit/Search', '~> 0.20.0rc'
 

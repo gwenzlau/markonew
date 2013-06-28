@@ -6,6 +6,12 @@
 // project.
 
 
+// AFIncrementalStore
+#define COCOAPODS_POD_AVAILABLE_AFIncrementalStore
+#define COCOAPODS_VERSION_MAJOR_AFIncrementalStore 0
+#define COCOAPODS_VERSION_MINOR_AFIncrementalStore 5
+#define COCOAPODS_VERSION_PATCH_AFIncrementalStore 0
+
 // AFNetworking
 #define COCOAPODS_POD_AVAILABLE_AFNetworking
 #define COCOAPODS_VERSION_MAJOR_AFNetworking 1
@@ -24,65 +30,17 @@
 #define COCOAPODS_VERSION_MINOR_ISO8601DateFormatter 6
 #define COCOAPODS_VERSION_PATCH_ISO8601DateFormatter 0
 
-// RestKit
-#define COCOAPODS_POD_AVAILABLE_RestKit
-#define COCOAPODS_VERSION_MAJOR_RestKit 0
-#define COCOAPODS_VERSION_MINOR_RestKit 20
-#define COCOAPODS_VERSION_PATCH_RestKit 2
+// InflectorKit
+#define COCOAPODS_POD_AVAILABLE_InflectorKit
+#define COCOAPODS_VERSION_MAJOR_InflectorKit 0
+#define COCOAPODS_VERSION_MINOR_InflectorKit 0
+#define COCOAPODS_VERSION_PATCH_InflectorKit 1
 
-// RestKit/Core
-#define COCOAPODS_POD_AVAILABLE_RestKit_Core
-#define COCOAPODS_VERSION_MAJOR_RestKit_Core 0
-#define COCOAPODS_VERSION_MINOR_RestKit_Core 20
-#define COCOAPODS_VERSION_PATCH_RestKit_Core 2
-
-// RestKit/CoreData
-#define COCOAPODS_POD_AVAILABLE_RestKit_CoreData
-#define COCOAPODS_VERSION_MAJOR_RestKit_CoreData 0
-#define COCOAPODS_VERSION_MINOR_RestKit_CoreData 20
-#define COCOAPODS_VERSION_PATCH_RestKit_CoreData 2
-
-// RestKit/Network
-#define COCOAPODS_POD_AVAILABLE_RestKit_Network
-#define COCOAPODS_VERSION_MAJOR_RestKit_Network 0
-#define COCOAPODS_VERSION_MINOR_RestKit_Network 20
-#define COCOAPODS_VERSION_PATCH_RestKit_Network 2
-
-// RestKit/ObjectMapping
-#define COCOAPODS_POD_AVAILABLE_RestKit_ObjectMapping
-#define COCOAPODS_VERSION_MAJOR_RestKit_ObjectMapping 0
-#define COCOAPODS_VERSION_MINOR_RestKit_ObjectMapping 20
-#define COCOAPODS_VERSION_PATCH_RestKit_ObjectMapping 2
-
-// RestKit/Search
-#define COCOAPODS_POD_AVAILABLE_RestKit_Search
-#define COCOAPODS_VERSION_MAJOR_RestKit_Search 0
-#define COCOAPODS_VERSION_MINOR_RestKit_Search 20
-#define COCOAPODS_VERSION_PATCH_RestKit_Search 2
-
-// RestKit/Support
-#define COCOAPODS_POD_AVAILABLE_RestKit_Support
-#define COCOAPODS_VERSION_MAJOR_RestKit_Support 0
-#define COCOAPODS_VERSION_MINOR_RestKit_Support 20
-#define COCOAPODS_VERSION_PATCH_RestKit_Support 2
-
-// RestKit/Testing
-#define COCOAPODS_POD_AVAILABLE_RestKit_Testing
-#define COCOAPODS_VERSION_MAJOR_RestKit_Testing 0
-#define COCOAPODS_VERSION_MINOR_RestKit_Testing 20
-#define COCOAPODS_VERSION_PATCH_RestKit_Testing 2
-
-// SOCKit
-#define COCOAPODS_POD_AVAILABLE_SOCKit
-#define COCOAPODS_VERSION_MAJOR_SOCKit 1
-#define COCOAPODS_VERSION_MINOR_SOCKit 1
-#define COCOAPODS_VERSION_PATCH_SOCKit 0
-
-// TransitionKit
-#define COCOAPODS_POD_AVAILABLE_TransitionKit
-#define COCOAPODS_VERSION_MAJOR_TransitionKit 1
-#define COCOAPODS_VERSION_MINOR_TransitionKit 1
-#define COCOAPODS_VERSION_PATCH_TransitionKit 1
+// TransformerKit
+#define COCOAPODS_POD_AVAILABLE_TransformerKit
+#define COCOAPODS_VERSION_MAJOR_TransformerKit 0
+#define COCOAPODS_VERSION_MINOR_TransformerKit 2
+#define COCOAPODS_VERSION_PATCH_TransformerKit 4
 
 // libffi
 #define COCOAPODS_POD_AVAILABLE_libffi

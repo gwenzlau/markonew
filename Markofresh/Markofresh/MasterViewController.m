@@ -9,6 +9,7 @@
 #import "MasterViewController.h"
 #import "AFJSONRequestOperation.h"
 #import "AFImageRequestOperation.h"
+#import "MAPIClient.h"
 #import "Post.h"
 #import "PostViewController.h"
 #import "DetailViewController.h"
@@ -22,6 +23,7 @@
 
 @implementation MasterViewController
 @synthesize locationManager = _locationManager;
+@synthesize tableView = _tableView;
 @synthesize posts = _posts;
 
 - (void)awakeFromNib
@@ -29,12 +31,8 @@
     [super awakeFromNib];
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-   // self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    
     /*UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton; */
     
@@ -45,9 +43,25 @@
     [self loadPosts];
     [self.refreshControl beginRefreshing];
     
+    [[MAPIClient sharedClient] getPath:@"posts.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id response) {
+        NSLog(@"Response: %@", response);
+        NSMutableArray *posts = [NSMutableArray array];
+        for (id postDictionary in response) {
+            Post *post = [[Post alloc] initWithAttributes:postDictionary];
+            [posts addObject:post];
+        }
+        self.posts = posts;
+        [self.tableView reloadData];
+    }
+    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error fetching posts!");
+        NSLog(@"%@", error);
+    }];
+
+
     NSURL *url = [NSURL URLWithString:@"https://fierce-shore-5970.herokuapp.com/posts.json"];
     [AFJSONRequestOperation JSONRequestOperationWithRequest:[NSURLRequest requestWithURL:url] success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        for (NSDictionary *attributes in [JSON valueForKeyPath:@"posts"]) {
+        for (NSDictionary *attributes in [JSON valueForKeyPath:@"posts.json"]) {
          //   Post *post = [[Post alloc] initWithAttributes:attributes];
          //   [self.mapView addAnnotation:post];
         }
