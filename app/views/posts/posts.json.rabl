@@ -2,6 +2,6 @@ collection @posts
 
 attributes :body, :lat, :lng
 
-child :user do
+child user do
 extends "users/show"
 end
