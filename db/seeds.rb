@@ -13,7 +13,9 @@ locations = {
   :kc   => [39.12, 94.60]
 }
 
-body = File.open(File.join(Rails.root, "public", "test.json"))
+body = {
+:body => ["This is a test"]
+}
 
 locations.values.each do |coordinate|
 	Post.create(:lat => coordinate[0], :lng => coordinate[1], :body => body)
