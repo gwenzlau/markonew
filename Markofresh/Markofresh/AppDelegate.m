@@ -7,18 +7,27 @@
 //
 
 #import "AppDelegate.h"
-#import <RestKit/RestKit.h>
+//#import <RestKit/RestKit.h>
 #import "MasterViewController.h"
 #import "Post.h"
 #import <NewRelicAgent/NewRelicAgent.h>
 
 @implementation AppDelegate
+@synthesize window = _window;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [NewRelicAgent startWithApplicationToken:@"AAb828214f70a789acd38dda59646f2793b54dc8bb"];
+    //attempt to simplify like gpho
+
+}
+
     
+    
+    
+    
+    /*
     NSError *error = nil;
     NSURL *modelURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Markofresh" ofType:@"momd"]];
     // NOTE: Due to an iOS 5 bug, the managed object model returned is immutable.
@@ -66,7 +75,7 @@
     [objectManager addRequestDescriptor:requestDescriptor];
    
     
-    /*
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://fierce-shore-5970.herokuapp.com/posts.json"]];
     RKManagedObjectRequestOperation *operation = [[RKManagedObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[responseDescriptor]];
     operation.managedObjectContext = managedObjectStore.mainQueueManagedObjectContext;
@@ -81,7 +90,7 @@
     [operationQueue addOperation:operation];
     */
                                 
-    
+    /*
     // Override point for customization after application launch.
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     MasterViewController *controller = (MasterViewController *)navigationController.topViewController;
@@ -98,6 +107,6 @@
     RKLogWithLevelWhileExecutingBlock(RKLogLevelTrace, ^{
         // Do something that generates logs
     });
-}
+}*/
 
 @end

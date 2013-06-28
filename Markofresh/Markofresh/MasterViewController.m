@@ -7,14 +7,22 @@
 //
 
 #import "MasterViewController.h"
+#import "AFJSONRequestOperation.h"
+#import "AFImageRequestOperation.h"
 #import "Post.h"
+#import "PostViewController.h"
 #import "DetailViewController.h"
 
 @interface MasterViewController ()
+@property (strong, nonatomic, readwrite) MKMapView *mapView;
+@property (strong, nonatomic, readwrite) CLLocationManager *locationManager;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+@property (nonatomic, strong) NSMutableArray *posts;
 @end
 
 @implementation MasterViewController
+@synthesize locationManager = _locationManager;
+@synthesize posts = _posts;
 
 - (void)awakeFromNib
 {
@@ -36,9 +44,26 @@
     
     [self loadPosts];
     [self.refreshControl beginRefreshing];
+    
+    NSURL *url = [NSURL URLWithString:@"https://fierce-shore-5970.herokuapp.com/posts.json"];
+    [AFJSONRequestOperation JSONRequestOperationWithRequest:[NSURLRequest requestWithURL:url] success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        for (NSDictionary *attributes in [JSON valueForKeyPath:@"posts"]) {
+         //   Post *post = [[Post alloc] initWithAttributes:attributes];
+         //   [self.mapView addAnnotation:post];
+        }
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    self.locationManager.distanceFilter = 80.0f;
+    self.locationManager.purpose = NSLocalizedString(@"Marko uses your location to find nearby photos", nil);
+    [self.locationManager startUpdatingLocation];
 }
 
-- (void)loadPosts
+/*- (void)loadPosts
 {
     [[RKObjectManager sharedManager] getObjectsAtPath:@"/posts.json" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         [self.refreshControl endRefreshing];
@@ -47,7 +72,25 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"An Error Has Occurred" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
     }];
+}*/
+ 
+
+-(void)loadPosts {
+    [Post fetchPosts:^(NSArray *posts, NSError *error) {
+        if (posts) {
+            NSLog(@"Recieved %d posts", posts.count);
+            self.posts = [NSMutableArray arrayWithArray:posts];
+            [self.tableView reloadData];
+        } else {
+            [[[UIAlertView alloc] initWithTitle:@"ERROR"
+                                        message:@"Couldn't fetch the posts."
+                                       delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil] show];
+        }
+    }];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -55,7 +98,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)insertNewObject:(id)sender
+/*- (void)insertNewObject:(id)sender
 {
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
@@ -74,9 +117,9 @@
         abort();
     }
 }
-
+*/
 #pragma mark - Table View
-
+/*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [[self.fetchedResultsController sections] count];
@@ -219,7 +262,23 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
+}*/
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    [Post postsNearLocation:newLocation block:^(NSSet *posts, NSError *error) {
+              if (error) {
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Nearby Posts Failed", nil) message:[error localizedFailureReason] delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil] show];
+        } else {
+            [self.mapView addAnnotations:[posts allObjects]];
+        }
+    }];
+    
 }
+
 
 /*
 // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed. 
@@ -231,12 +290,24 @@
 }
  */
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+/*- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Post *post = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = post.titleText;
     cell.detailTextLabel.text = post.subtitleText;}
-
+*/
 - (IBAction)addButton:(UIBarButtonItem *)sender {
+}
+
+- (IBAction)takePhoto:(UIBarButtonItem *)sender {
+    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    imagePickerController.sourceType = sourceType;
+    [self.navigationController presentViewController:imagePickerController animated:YES completion:nil];
 }
 @end

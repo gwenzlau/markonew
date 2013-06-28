@@ -35,6 +35,8 @@
 		A458937A177B3E1E00FBA2B6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4589379177B3E1E00FBA2B6 /* MapKit.framework */; };
 		A458937E177B4AEC00FBA2B6 /* photo-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = A458937C177B4AEC00FBA2B6 /* photo-placeholder.png */; };
 		A458937F177B4AEC00FBA2B6 /* photo-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A458937D177B4AEC00FBA2B6 /* photo-placeholder@2x.png */; };
+		A4B0CF09177CF780002BD4AF /* NSDictionary+JSONValueParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B0CF08177CF780002BD4AF /* NSDictionary+JSONValueParsing.m */; };
+		A4B0CF11177DCDED002BD4AF /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B0CF10177DCDED002BD4AF /* ProgressView.m */; };
 		A4C7E6DD176FB2480027E089 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C7E6DC176FB2480027E089 /* PostViewController.m */; };
 		A4D6B3A31774CD7800E45BB0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D6B3A21774CD7800E45BB0 /* CoreLocation.framework */; };
 		A4EC02A11770C63F00D608B8 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = A4EC029E1770C63F00D608B8 /* LICENSE */; };
@@ -97,6 +99,10 @@
 		A4589379177B3E1E00FBA2B6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A458937C177B4AEC00FBA2B6 /* photo-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo-placeholder.png"; sourceTree = "<group>"; };
 		A458937D177B4AEC00FBA2B6 /* photo-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo-placeholder@2x.png"; sourceTree = "<group>"; };
+		A4B0CF05177BAD8F002BD4AF /* NSDictionary+JSONValueParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+JSONValueParsing.h"; path = "../../Markofresh/Markofresh/NSDictionary+JSONValueParsing.h"; sourceTree = "<group>"; };
+		A4B0CF08177CF780002BD4AF /* NSDictionary+JSONValueParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JSONValueParsing.m"; sourceTree = "<group>"; };
+		A4B0CF0F177DCDED002BD4AF /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProgressView.h; path = ../../Markofresh/Markofresh/ProgressView.h; sourceTree = "<group>"; };
+		A4B0CF10177DCDED002BD4AF /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProgressView.m; path = ../../Markofresh/Markofresh/ProgressView.m; sourceTree = "<group>"; };
 		A4C7E6DB176FB2480027E089 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostViewController.h; path = ../../Markofresh/Markofresh/PostViewController.h; sourceTree = "<group>"; };
 		A4C7E6DC176FB2480027E089 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostViewController.m; path = ../../Markofresh/Markofresh/PostViewController.m; sourceTree = "<group>"; };
 		A4D6B3A21774CD7800E45BB0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -145,7 +151,6 @@
 		A4074D4C176D0868008CCCD7 = {
 			isa = PBXGroup;
 			children = (
-				A4589379177B3E1E00FBA2B6 /* MapKit.framework */,
 				A4074D60176D0868008CCCD7 /* Markofresh */,
 				A4074D8B176D0868008CCCD7 /* MarkofreshTests */,
 				A4074D57176D0868008CCCD7 /* Frameworks */,
@@ -166,6 +171,7 @@
 		A4074D57176D0868008CCCD7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A4589379177B3E1E00FBA2B6 /* MapKit.framework */,
 				A4D6B3A21774CD7800E45BB0 /* CoreLocation.framework */,
 				A4EC02A81770C66B00D608B8 /* libz.dylib */,
 				A4EC02A61770C66200D608B8 /* SystemConfiguration.framework */,
@@ -186,20 +192,15 @@
 			children = (
 				A4074D69176D0868008CCCD7 /* AppDelegate.h */,
 				A4074D6A176D0868008CCCD7 /* AppDelegate.m */,
-				A4589371177B277500FBA2B6 /* API */,
-				A4074D78176D0868008CCCD7 /* MasterViewController.h */,
 				A4074D72176D0868008CCCD7 /* MainStoryboard.storyboard */,
-				A4074D7B176D0868008CCCD7 /* DetailViewController.h */,
-				A4074D79176D0868008CCCD7 /* MasterViewController.m */,
+				A4589371177B277500FBA2B6 /* API */,
 				A4589378177B347800FBA2B6 /* Controllers */,
-				A4074D7C176D0868008CCCD7 /* DetailViewController.m */,
-				A4589372177B2FA000FBA2B6 /* Photo.h */,
-				A4589373177B2FA000FBA2B6 /* Photo.m */,
+				A4B0CF04177B7E60002BD4AF /* Model */,
 				A4074D75176D0868008CCCD7 /* Markofresh.xcdatamodeld */,
 				A4074D9F176D0E41008CCCD7 /* MUser.h */,
 				A4074DA0176D0E41008CCCD7 /* MUser.m */,
-				A4074D9C176D0E41008CCCD7 /* Post.h */,
-				A4074D9D176D0E41008CCCD7 /* Post.m */,
+				A4B0CF0E177DCDCF002BD4AF /* View */,
+				A4B0CF0A177DCD1F002BD4AF /* Help */,
 				A4074D61176D0868008CCCD7 /* Supporting Files */,
 			);
 			path = Markofresh;
@@ -251,6 +252,10 @@
 		A4589378177B347800FBA2B6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A4074D78176D0868008CCCD7 /* MasterViewController.h */,
+				A4074D79176D0868008CCCD7 /* MasterViewController.m */,
+				A4074D7B176D0868008CCCD7 /* DetailViewController.h */,
+				A4074D7C176D0868008CCCD7 /* DetailViewController.m */,
 				A4C7E6DB176FB2480027E089 /* PostViewController.h */,
 				A4C7E6DC176FB2480027E089 /* PostViewController.m */,
 				A4589375177B30EF00FBA2B6 /* PhotosViewController.h */,
@@ -266,6 +271,35 @@
 				A458937D177B4AEC00FBA2B6 /* photo-placeholder@2x.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		A4B0CF04177B7E60002BD4AF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A4074D9C176D0E41008CCCD7 /* Post.h */,
+				A4074D9D176D0E41008CCCD7 /* Post.m */,
+				A4589372177B2FA000FBA2B6 /* Photo.h */,
+				A4589373177B2FA000FBA2B6 /* Photo.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		A4B0CF0A177DCD1F002BD4AF /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				A4B0CF05177BAD8F002BD4AF /* NSDictionary+JSONValueParsing.h */,
+				A4B0CF08177CF780002BD4AF /* NSDictionary+JSONValueParsing.m */,
+			);
+			name = Help;
+			sourceTree = "<group>";
+		};
+		A4B0CF0E177DCDCF002BD4AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A4B0CF0F177DCDED002BD4AF /* ProgressView.h */,
+				A4B0CF10177DCDED002BD4AF /* ProgressView.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		A4EC029D1770C63F00D608B8 /* NewRelic_iOS_Agent_1.342 */ = {
@@ -433,6 +467,8 @@
 				A4589370177B266600FBA2B6 /* MAPIClient.m in Sources */,
 				A4589374177B2FA000FBA2B6 /* Photo.m in Sources */,
 				A4589377177B30EF00FBA2B6 /* PhotosViewController.m in Sources */,
+				A4B0CF09177CF780002BD4AF /* NSDictionary+JSONValueParsing.m in Sources */,
+				A4B0CF11177DCDED002BD4AF /* ProgressView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

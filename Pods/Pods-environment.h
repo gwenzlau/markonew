@@ -12,6 +12,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking 3
 #define COCOAPODS_VERSION_PATCH_AFNetworking 1
 
+// BlocksKit
+#define COCOAPODS_POD_AVAILABLE_BlocksKit
+#define COCOAPODS_VERSION_MAJOR_BlocksKit 1
+#define COCOAPODS_VERSION_MINOR_BlocksKit 8
+#define COCOAPODS_VERSION_PATCH_BlocksKit 2
+
 // ISO8601DateFormatter
 #define COCOAPODS_POD_AVAILABLE_ISO8601DateFormatter
 #define COCOAPODS_VERSION_MAJOR_ISO8601DateFormatter 0
@@ -77,4 +83,10 @@
 #define COCOAPODS_VERSION_MAJOR_TransitionKit 1
 #define COCOAPODS_VERSION_MINOR_TransitionKit 1
 #define COCOAPODS_VERSION_PATCH_TransitionKit 1
+
+// libffi
+#define COCOAPODS_POD_AVAILABLE_libffi
+#define COCOAPODS_VERSION_MAJOR_libffi 3
+#define COCOAPODS_VERSION_MINOR_libffi 0
+#define COCOAPODS_VERSION_PATCH_libffi 13
 

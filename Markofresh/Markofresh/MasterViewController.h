@@ -7,13 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 #import <CoreData/CoreData.h>
 
-@interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate> {
+    NSArray *map;
+    @private
+    CLLocationManager *_locationManager;
+    
+}
 
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+//@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+//@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 - (IBAction)addButton:(UIBarButtonItem *)sender;
+- (IBAction)takePhoto:(UIBarButtonItem *)sender;
 
 @end

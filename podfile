@@ -1,6 +1,7 @@
 platform :ios, 6.0
 pod 'RestKit', '~> 0.20.0rc'
 pod 'ISO8601DateFormatter', '~> 0.6'
+pod 'BlocksKit'
 
 xcodeproj '/Users/grantwenzlau/markonewmaster/markofresh/markofresh.xcodeproj'
 

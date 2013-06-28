@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PostViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITextField *postTextField;
+
 
 - (IBAction)onSave:(id)sender;
 - (IBAction)onCancel:(id)sender;

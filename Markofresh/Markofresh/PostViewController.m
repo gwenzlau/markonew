@@ -7,11 +7,14 @@
 //
 
 #import "PostViewController.h"
+#import "ProgressView.h"
 #import "Post.h"
 #import "MUser.h"
-#import <RestKit/RestKit.h>
+#import "ProgressView.h"
+//#import <RestKit/RestKit.h>
 
 @interface PostViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *postTextField;
 
 @end
 
@@ -40,7 +43,7 @@
 
 #pragma mark - Actions
 
--(void)savePost {
+/*-(void)savePost {
     
     RKManagedObjectStore *objectStore = [[RKObjectManager sharedManager] managedObjectStore];
     Post *post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:objectStore.mainQueueManagedObjectContext];
@@ -55,6 +58,27 @@
     }];
     
     RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
+}*/
+
+-(void) savePost {
+    Post *post = [[Post alloc] init];
+   // post.CLlocation = CLLocationCoordinate2DMake(self.latitude, self.longitude);
+    post.body = self.postTextField.text;
+    
+    [self.view endEditing:YES];
+    
+    ProgressView *progressView = [ProgressView presentInWindow:self.view.window];
+    
+    [post saveWithProgress:^(CGFloat progress) {
+        [progressView setProgress:progress];
+    }completion:^(BOOL success, NSError *error) {
+        [progressView dismiss];
+        if (success) {
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            NSLog(@"ERROR: %@", error);
+        }
+    }];
 }
 
 - (IBAction)onCancel:(id)sender {

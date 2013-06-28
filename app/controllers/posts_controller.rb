@@ -10,7 +10,7 @@ respond_to :json
       @photos = Photo.nearby(lat.to_f, lng.to_f)
       respond_with({:posts => @posts})
     else
-      respond_with({:message => "Invalid or missing lat/lng parameters"} :status => 406)
+      respond_with({:message => "Invalid or missing lat/lng parameters"}, :status => 406)
     end
   end
 #    @posts = Post.order("created_at desc").all(params[:id])
