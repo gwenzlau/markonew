@@ -77,17 +77,6 @@
     [self.locationManager startUpdatingLocation];
 }
 
-/*- (void)loadPosts
-{
-    [[RKObjectManager sharedManager] getObjectsAtPath:@"/posts.json" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        [self.refreshControl endRefreshing];
-    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        [self.refreshControl endRefreshing];
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"An Error Has Occurred" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alertView show];
-    }];
-}*/
- 
 
 -(void)loadPosts {
     [Post fetchPosts:^(NSArray *posts, NSError *error) {
