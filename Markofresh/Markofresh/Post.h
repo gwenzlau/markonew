@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
-#import <CoreData/CoreData.h>
+//#import <CoreData/CoreData.h>
 
-@class MUser;
+//@class MUser;
 
 @interface Post : NSObject <MKAnnotation> {
 
@@ -23,14 +23,14 @@
     CLLocationDegrees _longitude;
 }
 
-+ (void)fetchPosts:(void (^)(NSArray *posts, NSError *error))completionBlock;
++ (void)fetchPostsNearLocation:(CLLocation *)location block:(void (^)(NSArray *posts, NSError *error))completionBlock;
 
 @property (nonatomic, retain) NSNumber * postID;
 @property (nonatomic, retain) id jsonURL;
 @property (nonatomic, retain) id htmlURL;
 @property (nonatomic, strong) NSString *body;
 @property (nonatomic, retain) NSDate * createdAt;
-@property (nonatomic, retain) MUser *user;
+//@property (nonatomic, retain) MUser *user;
 
 @property (nonatomic, readonly) NSString *titleText;
 @property (nonatomic, readonly) NSString *subtitleText;
@@ -41,16 +41,13 @@
 
 - (id)initWithAttributes:(NSDictionary *)attributes;
 
-+ (void)postsNearLocation:(CLLocation *)location
-                    block:(void (^)(NSSet *posts, NSError *error))block;
 
-+ (void)uploadPostAtLocation:(CLLocation *)location
+/*+ (void)uploadPostAtLocation:(CLLocation *)location
 //not sure if the below is right - check the gpho - they did image:UIImage *)image... what is the text equiv?
                        body:(UITextField *)body
                        block:(void (^)(Post *post, NSError *error))block;
-
-- (void)saveWithProgress:(void (^)(CGFloat progress))progressBlock completion:(void (^)(BOOL success, NSError *error))
-completionBlock;
+*/
+- (void)saveWithProgress:(void (^)(CGFloat progress))progressBlock completion:(void (^)(BOOL success, NSError *error))completionBlock;
 - (void)saveWithCompletion:(void (^)(BOOL success, NSError *error))completionBlock;
 
 

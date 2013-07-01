@@ -11,8 +11,8 @@
 #import <MapKit/MapKit.h>
 #import <CoreData/CoreData.h>
 
-@interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate> {
-    NSArray *map;
+@interface MasterViewController : UITableViewController < CLLocationManagerDelegate, UINavigationControllerDelegate, UITableViewDelegate> {
+//NSArray *map;
     @private
     CLLocationManager *_locationManager;
     

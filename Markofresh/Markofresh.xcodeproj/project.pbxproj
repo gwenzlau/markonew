@@ -29,6 +29,7 @@
 		A4074D93176D0868008CCCD7 /* MarkofreshTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4074D92176D0868008CCCD7 /* MarkofreshTests.m */; };
 		A4074D9E176D0E41008CCCD7 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = A4074D9D176D0E41008CCCD7 /* Post.m */; };
 		A4074DA1176D0E41008CCCD7 /* MUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A4074DA0176D0E41008CCCD7 /* MUser.m */; };
+		A4165C8B1781F29D00F0760B /* Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = A4165C8A1781F29D00F0760B /* Notifications.m */; };
 		A4589370177B266600FBA2B6 /* MAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A458936F177B266600FBA2B6 /* MAPIClient.m */; };
 		A4589374177B2FA000FBA2B6 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = A4589373177B2FA000FBA2B6 /* Photo.m */; };
 		A4589377177B30EF00FBA2B6 /* PhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4589376177B30EF00FBA2B6 /* PhotosViewController.m */; };
@@ -90,6 +91,8 @@
 		A4074D9D176D0E41008CCCD7 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Post.m; path = ../../Markofresh/Markofresh/Post.m; sourceTree = "<group>"; };
 		A4074D9F176D0E41008CCCD7 /* MUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUser.h; path = ../../Markofresh/Markofresh/MUser.h; sourceTree = "<group>"; };
 		A4074DA0176D0E41008CCCD7 /* MUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUser.m; path = ../../Markofresh/Markofresh/MUser.m; sourceTree = "<group>"; };
+		A4165C891781F29D00F0760B /* Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Notifications.h; path = ../../Markofresh/Markofresh/Notifications.h; sourceTree = "<group>"; };
+		A4165C8A1781F29D00F0760B /* Notifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Notifications.m; path = ../../Markofresh/Markofresh/Notifications.m; sourceTree = "<group>"; };
 		A458936E177B266600FBA2B6 /* MAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MAPIClient.h; path = ../../Markofresh/Markofresh/MAPIClient.h; sourceTree = "<group>"; };
 		A458936F177B266600FBA2B6 /* MAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MAPIClient.m; path = ../../Markofresh/Markofresh/MAPIClient.m; sourceTree = "<group>"; };
 		A4589372177B2FA000FBA2B6 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photo.h; path = ../../Markofresh/Markofresh/Photo.h; sourceTree = "<group>"; };
@@ -195,7 +198,6 @@
 				A4074D72176D0868008CCCD7 /* MainStoryboard.storyboard */,
 				A4589371177B277500FBA2B6 /* API */,
 				A4589378177B347800FBA2B6 /* Controllers */,
-				A4B0CF04177B7E60002BD4AF /* Model */,
 				A4074D75176D0868008CCCD7 /* Markofresh.xcdatamodeld */,
 				A4074D9F176D0E41008CCCD7 /* MUser.h */,
 				A4074DA0176D0E41008CCCD7 /* MUser.m */,
@@ -260,6 +262,7 @@
 				A4C7E6DC176FB2480027E089 /* PostViewController.m */,
 				A4589375177B30EF00FBA2B6 /* PhotosViewController.h */,
 				A4589376177B30EF00FBA2B6 /* PhotosViewController.m */,
+				A4B0CF04177B7E60002BD4AF /* Model */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -296,6 +299,8 @@
 		A4B0CF0E177DCDCF002BD4AF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A4165C891781F29D00F0760B /* Notifications.h */,
+				A4165C8A1781F29D00F0760B /* Notifications.m */,
 				A4B0CF0F177DCDED002BD4AF /* ProgressView.h */,
 				A4B0CF10177DCDED002BD4AF /* ProgressView.m */,
 			);
@@ -469,6 +474,7 @@
 				A4589377177B30EF00FBA2B6 /* PhotosViewController.m in Sources */,
 				A4B0CF09177CF780002BD4AF /* NSDictionary+JSONValueParsing.m in Sources */,
 				A4B0CF11177DCDED002BD4AF /* ProgressView.m in Sources */,
+				A4165C8B1781F29D00F0760B /* Notifications.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

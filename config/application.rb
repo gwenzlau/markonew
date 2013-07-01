@@ -64,7 +64,7 @@ module Marko
 
     #helios middleware installed here
     config.middleware.use Helios::Application do
-        service :data, model: "markonewmaster/markofresh/markofresh/markofresh.xcdatamodeld"
+        service :data, model: "markonewmaster/markofresh.xcdatamodel"
         
     end
   end

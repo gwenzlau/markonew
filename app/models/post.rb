@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
   COORDINATE_DELTA = 0.05
 
-  attr_accessible :body, :lat, :lng
+  #attr_accessible :body, :lat, :lng
   has_attached_file :image,
                   :styles => { :thumbnail => "100x100#" },
                   :storage => :s3,

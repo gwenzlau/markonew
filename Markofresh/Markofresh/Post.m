@@ -14,7 +14,8 @@
 #import <BlocksKit/BlocksKit.h>
 #import "AFNetworking.h"
 #import "NSDictionary+JSONValueParsing.h"
-#import "MUser.h"
+//#import "MUser.h"
+#import "Notifications.h"
 
 
 static NSDate * NSDateFromISO8601String(NSString *string) {
@@ -62,7 +63,7 @@ static NSString * NSStringFromDate(NSDate *date) {
 @dynamic htmlURL;
 //@dynamic body;
 @dynamic createdAt;
-@dynamic user;
+//@dynamic user;
 
 @synthesize postURLString = _postURLString;
 @synthesize timestamp = _timestamp;
@@ -72,9 +73,44 @@ static NSString * NSStringFromDate(NSDate *date) {
 @dynamic location;
 @synthesize body;
 
-+ (void)fetchPosts:(void (^)(NSArray *posts, NSError *error))completionBlock {
-    [[MAPIClient sharedClient] getPath:@"/posts.json" parameters:nil
+-(id)initWithAttributes:(NSDictionary *)attributes {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    
+    self.body = [attributes valueForKeyPath:@"body"];
+    self.postURLString = [attributes valueForKeyPath:@"post_urls.original"];
+    
+    self.timestamp = NSDateFromISO8601String([attributes valueForKeyPath:@"created_at"]);
+    
+    self.latitude = [[attributes valueForKeyPath:@"lat"] doubleValue];
+    self.longitude = [[attributes valueForKeyPath:@"lng"] doubleValue];
+    
+    return self;
+}
+
+- (NSURL *)postURL {
+    return [NSURL URLWithString:self.postURLString];
+}
+
+- (CLLocation *)location {
+    return [[CLLocation alloc] initWithLatitude:self.latitude longitude:self.longitude];
+}
+
+
++ (void)fetchPostsNearLocation:(CLLocation *)location block:(void (^)(NSArray *posts, NSError *error))completionBlock {
+    NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
+    [mutableParameters setObject: [NSNumber numberWithDouble: (location.coordinate.latitude)] forKey:@"lat"];
+    [mutableParameters setObject: [NSNumber numberWithDouble:(location.coordinate.longitude)] forKey:@"lng"];
+    
+    [[MAPIClient sharedClient] getPath:@"/posts.json" parameters:mutableParameters
                                success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                  /* NSArray *mutablePosts = [NSArray array];
+                                   for (NSDictionary *attributes in [responseObject valueForKeyPath:@"posts"]) {
+                                       Post *post = [[Post alloc] initWithAttributes:attributes];
+                                       [mutablePosts insertObject:post atIndex:(0)];
+                                   }*/
                                    if (operation.response.statusCode == 200) {
                                        NSArray *posts = [Post postsWithJSON:responseObject];
                                        completionBlock(posts, nil);
@@ -87,7 +123,31 @@ static NSString * NSStringFromDate(NSDate *date) {
                                }];
 }
 
-+ (NSArray *)postsWithJSON:(NSArray *)postsJson {
+/*+(void)postsNearLocation:(CLLocation *)location block:(void (^)(NSSet *, NSError *))block
+{
+    NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
+    [mutableParameters setObject: [NSNumber numberWithDouble: (location.coordinate.latitude)] forKey:@"lat"];
+    [mutableParameters setObject: [NSNumber numberWithDouble:(location.coordinate.longitude)] forKey:@"lng"];
+    
+    [[MAPIClient sharedClient] getPath:@"/posts" parameters:mutableParameters success:^(AFHTTPRequestOperation *operation, id JSON) {
+        NSMutableSet *mutablePosts = [NSMutableSet set];
+        for (NSDictionary *attributes in [JSON valueForKeyPath:@"posts"]) {
+            Post *post = [[Post alloc] initWithAttributes:attributes];
+            [mutablePosts addObject:post];
+        }
+        
+        if (block) {
+            block ([NSSet setWithSet:mutablePosts], nil);
+        }
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
+*/
+
++ (NSMutableArray *)postsWithJSON:(NSArray *)postsJson {
     return [postsJson map:^id(id itemJson) {
         return [Post postFromJSON:itemJson];
     }];
@@ -106,7 +166,7 @@ static NSString * NSStringFromDate(NSDate *date) {
      }
 
 - (void)saveWithCompletion:(void (^)(BOOL success, NSError *error))completionBlock {
-    [self saveWithProgress:nil completion:completionBlock];
+  [self saveWithProgress:nil completion:completionBlock];
 }
 
 -(void)saveWithProgress:(void (^)(CGFloat progress))progressBlock completion:(void (^)(BOOL success, NSError *error))completionBlock {
@@ -135,6 +195,7 @@ static NSString * NSStringFromDate(NSDate *date) {
             NSLog(@"Created, %@", responseObject);
             NSDictionary *updatedPost = [responseObject objectForKey:@"post"];
             [self updateFromJSON:updatedPost];
+            [self notifyCreated];
             completionBlock(YES, nil);
         } else {
             completionBlock(NO, nil);
@@ -145,54 +206,15 @@ static NSString * NSStringFromDate(NSDate *date) {
      [[MAPIClient sharedClient] enqueueHTTPRequestOperation:operation];
 };
 
--(id)initWithAttributes:(NSDictionary *)attributes {
-    self = [super init];
-    if (!self) {
-        return nil;
-    }
-    
-    self.postURLString = [attributes valueForKeyPath:@"post_urls.original"];
-    
-    self.timestamp = NSDateFromISO8601String([attributes valueForKeyPath:@"created_at"]);
-    
-    self.latitude = [[attributes valueForKeyPath:@"lat"] doubleValue];
-    self.longitude = [[attributes valueForKeyPath:@"lng"] doubleValue];
-    
-    return self;
+- (void)notifyCreated {
+    [[NSNotificationCenter defaultCenter] postNotificationName:PostCreatedNotification object:self];
 }
 
-- (NSURL *)postURL {
-    return [NSURL URLWithString:self.postURLString];
-}
+#pragma  mark  -
 
-- (CLLocation *) location {
-    return [[CLLocation alloc] initWithLatitude:self.latitude longitude:self.longitude];
-}
 
-+(void)postsNearLocation:(CLLocation *)location block:(void (^)(NSSet *, NSError *))block
-{
-    NSMutableDictionary *mutableParameters = [NSMutableDictionary dictionary];
-    [mutableParameters setObject: [NSNumber numberWithDouble: (location.coordinate.latitude)] forKey:@"lat"];
-    [mutableParameters setObject: [NSNumber numberWithDouble:(location.coordinate.longitude)] forKey:@"lng"];
-    
-    [[MAPIClient sharedClient] getPath:@"/posts" parameters:mutableParameters success:^(AFHTTPRequestOperation *operation, id JSON) {
-        NSMutableSet *mutablePosts = [NSMutableSet set];
-        for (NSDictionary *attributes in [JSON valueForKeyPath:@"posts"]) {
-            Post *post = [[Post alloc] initWithAttributes:attributes];
-            [mutablePosts addObject:post];
-        }
-        
-        if (block) {
-            block ([NSSet setWithSet:mutablePosts], nil);
-        }
-    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (block) {
-            block(nil, error);
-        }
-    }];
-}
-
-+(void)uploadPostAtLocation:(CLLocation *)location
+/*
+ +(void)savePost:(CLLocation *)location
                        body:(UITextField *)body
                        block:(void (^)(Post *post, NSError *error))block
 {
@@ -201,7 +223,7 @@ static NSString * NSStringFromDate(NSDate *date) {
     [mutableParameters setObject:[NSNumber numberWithDouble:location.coordinate.longitude] forKey:@"post[lng]"];
     
     NSMutableURLRequest *mutableURLRequest = [[MAPIClient sharedClient] multipartFormRequestWithMethod:@"POST" path:@"/posts" parameters:mutableParameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFormData:body name:@"post[body]"];
+          [formData appendPartWithFormData:body name:@"post[body]"];
         //[formData appendPartWithFormData:TextField(body) name:@"post[body]"];
     }];
     
@@ -218,21 +240,23 @@ static NSString * NSStringFromDate(NSDate *date) {
     }];
     [[MAPIClient sharedClient] enqueueHTTPRequestOperation:operation];
 }
+ */
+
 
 #pragma mark - MKAnnotation
-
+/*
 - (CLLocationCoordinate2D)coordinate {
     return CLLocationCoordinate2DMake(self.latitude, self.longitude);
 }
 
-- (NSString *)body {
+- (NSString *)title {
     return NSStringFromCoordinate(self.coordinate);
 }
 
 - (NSString *)subtitle {
     return NSStringFromDate(self.timestamp);
 }
-/*
+
 - (NSString *)titleText
 {
     return [self.body length] ? self.body : @"(untitled)";

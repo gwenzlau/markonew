@@ -89,7 +89,7 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="camera" id="IVV-cI-MCN">
                             <connections>
                                 <action selector="takePhoto:" destination="12" id="KUc-WX-lX6"/>
-                                <segue destination="Z5A-hC-rG5" kind="modal" id="hlP-3x-sAR"/>
+                                <segue destination="Z5A-hC-rG5" kind="modal" id="76Y-FI-Rsm"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="aij-eH-6wX">

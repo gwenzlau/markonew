@@ -11,29 +11,30 @@
 #import "Post.h"
 #import "MUser.h"
 #import "ProgressView.h"
-//#import <RestKit/RestKit.h>
+#import "AFJSONRequestOperation.h"
 
 @interface PostViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *postTextField;
-
+@property (strong, nonatomic, readwrite) CLLocation *locationManager;
 @end
 
 @implementation PostViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize locationManager = _locationManager;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [self setPostTextField:nil];
+//redundant?   self.navigationItem.rightBarButtonItem = [self saveButton];
+    self.locationManager = [[CLLocationManager alloc] init];
 }
+/* this might be redundant?
+ - (UIBarButtonItem *)saveButton {
+    return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+                                                         target:self
+                                                         action:@selector(savePost:)];
+}*/
 
 - (void)didReceiveMemoryWarning
 {
@@ -41,28 +42,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Actions
 
-/*-(void)savePost {
-    
-    RKManagedObjectStore *objectStore = [[RKObjectManager sharedManager] managedObjectStore];
-    Post *post = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:objectStore.mainQueueManagedObjectContext];
-    [post setBody:self.postTextField.text];
-    [objectStore.mainQueueManagedObjectContext save:nil];
-   
-    RKObjectManager *manager = [RKObjectManager sharedManager]; [manager postObject:post path:@"/posts.json" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        NSLog(@"Success saving post");
-       // [MUser setCurrentUser:self];
-    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        NSLog(@"Failure saving post: %@", error.localizedDescription);
-    }];
-    
-    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
-}*/
-
--(void) savePost {
+-(void)savePost {
     Post *post = [[Post alloc] init];
-   // post.CLlocation = CLLocationCoordinate2DMake(self.latitude, self.longitude);
     post.body = self.postTextField.text;
     
     [self.view endEditing:YES];
@@ -71,7 +53,7 @@
     
     [post saveWithProgress:^(CGFloat progress) {
         [progressView setProgress:progress];
-    }completion:^(BOOL success, NSError *error) {
+    } completion:^(BOOL success, NSError *error) {
         [progressView dismiss];
         if (success) {
             [self.navigationController popViewControllerAnimated:YES];
@@ -80,6 +62,7 @@
         }
     }];
 }
+
 
 - (IBAction)onCancel:(id)sender {
     [self dismiss];

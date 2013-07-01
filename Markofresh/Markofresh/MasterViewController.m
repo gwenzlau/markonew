@@ -11,11 +11,13 @@
 #import "AFImageRequestOperation.h"
 #import "MAPIClient.h"
 #import "Post.h"
-#import "PostViewController.h"
+//#import "PostViewController.h"
 #import "DetailViewController.h"
+#import "Notifications.h"
+#import "ProgressView.h"
 
 @interface MasterViewController ()
-@property (strong, nonatomic, readwrite) MKMapView *mapView;
+//@property (strong, nonatomic, readwrite) MKMapView *mapView;
 @property (strong, nonatomic, readwrite) CLLocationManager *locationManager;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @property (nonatomic, strong) NSMutableArray *posts;
@@ -36,13 +38,13 @@
     /*UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton; */
     
-    UIRefreshControl *refreshControl = [UIRefreshControl new];
+/*    UIRefreshControl *refreshControl = [UIRefreshControl new];
     [refreshControl addTarget:self action:@selector(loadPosts) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
-    
+  */  
     [self loadPosts];
-    [self.refreshControl beginRefreshing];
-    
+ //   [self.refreshControl beginRefreshing];
+   /*
     [[MAPIClient sharedClient] getPath:@"posts.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id response) {
         NSLog(@"Response: %@", response);
         NSMutableArray *posts = [NSMutableArray array];
@@ -58,12 +60,11 @@
         NSLog(@"%@", error);
     }];
 
-
     NSURL *url = [NSURL URLWithString:@"https://fierce-shore-5970.herokuapp.com/posts.json"];
     [AFJSONRequestOperation JSONRequestOperationWithRequest:[NSURLRequest requestWithURL:url] success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         for (NSDictionary *attributes in [JSON valueForKeyPath:@"posts.json"]) {
-         //   Post *post = [[Post alloc] initWithAttributes:attributes];
-         //   [self.mapView addAnnotation:post];
+            Post *post = [[Post alloc] initWithAttributes:attributes];
+           [self.tableView insertRowsAtIndexPaths: post withRowAnimation:YES];
         }
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         NSLog(@"Error: %@", error);
@@ -75,11 +76,14 @@
     self.locationManager.distanceFilter = 80.0f;
     self.locationManager.purpose = NSLocalizedString(@"Marko uses your location to find nearby photos", nil);
     [self.locationManager startUpdatingLocation];
-}
+*/}
 
 
--(void)loadPosts {
-    [Post fetchPosts:^(NSArray *posts, NSError *error) {
+
+-(void)locationManager:(CLLocationManager *)manager
+    didUpdateLocations:(NSArray *)newLocation
+{
+    [Post fetchPostsNearLocation:newLocation block:^(NSArray *posts, NSError *error) {
         if (posts) {
             NSLog(@"Recieved %d posts", posts.count);
             self.posts = [NSMutableArray arrayWithArray:posts];
@@ -94,6 +98,14 @@
     }];
 }
 
+#pragma mark - CLLocationManagerDelegate
+
+/*- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    [Post fetchPostsNearLocation:newLocation block:^(NSArray *posts, NSError *error)];
+}*/
 
 - (void)didReceiveMemoryWarning
 {
@@ -101,6 +113,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)postCreated:(NSNotification *)notification {
+    [self.posts insertObject:notification atIndex:0];
+}
 /*- (void)insertNewObject:(id)sender
 {
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
@@ -266,21 +281,7 @@
 {
     [self.tableView endUpdates];
 }*/
-#pragma mark - CLLocationManagerDelegate
 
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation
-{
-    [Post postsNearLocation:newLocation block:^(NSSet *posts, NSError *error) {
-              if (error) {
-            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Nearby Posts Failed", nil) message:[error localizedFailureReason] delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil] show];
-        } else {
-            [self.mapView addAnnotations:[posts allObjects]];
-        }
-    }];
-    
-}
 
 
 /*
@@ -299,8 +300,6 @@
     cell.textLabel.text = post.titleText;
     cell.detailTextLabel.text = post.subtitleText;}
 */
-- (IBAction)addButton:(UIBarButtonItem *)sender {
-}
 
 - (IBAction)takePhoto:(UIBarButtonItem *)sender {
     UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
