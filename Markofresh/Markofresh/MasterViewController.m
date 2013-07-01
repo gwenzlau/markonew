@@ -42,7 +42,7 @@
     [refreshControl addTarget:self action:@selector(loadPosts) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
   */  
-    [self loadPosts];
+   // [self loadPosts];
  //   [self.refreshControl beginRefreshing];
    /*
     [[MAPIClient sharedClient] getPath:@"posts.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id response) {

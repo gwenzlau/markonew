@@ -9,14 +9,15 @@ gem 'faker'
 gem "paperclip", "~> 3.0"
 gem 'aws-sdk'
 gem 'newrelic_rpm'
-gem 'thin'
-gem 'helios'
-
+gem 'thin' 
+gem 'helios'  
+gem 'excon'  
+gem 'sprockets' 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
   gem 'sqlite3', '1.3.5'
-  gem 'rspec-rails', '2.11.0'
+ # gem 'rspec-rails', '2.11.0'
 end
 
 group :production do
