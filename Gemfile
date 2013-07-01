@@ -10,9 +10,6 @@ gem "paperclip", "~> 3.0"
 gem 'aws-sdk'
 gem 'newrelic_rpm'
 gem 'thin' 
-gem 'helios'  
-gem 'excon'  
-gem 'sprockets' 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do

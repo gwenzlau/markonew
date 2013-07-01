@@ -62,10 +62,7 @@ module Marko
     #required for devise on heroku
     config.assets.initialize_on_precompile = false
 
-    #helios middleware installed here
-    config.middleware.use Helios::Application do
-        service :data, model: "markonewmaster/markofresh.xcdatamodel"
-        
+ 
     end
   end
 end
